@@ -1,10 +1,9 @@
-#ifdef __cplusplus
+#pragma once
+#ifndef AE_MATH_H
+#define AE_MATH_H
+
 namespace AlphaEngine { namespace Math
 {
-extern "C" 
-{
-#endif
-
 	struct Vector2
 	{
 		float x, y;
@@ -15,7 +14,10 @@ extern "C"
 		float x, y, z;
 	};
 	
-#ifdef __cplusplus
-} // end of extern "C"
+	Vector3 xAxis(float x) { return {x, 0, 0}; }
+	Vector3 yAxis(float y) { return {0, y, 0}; }
+	Vector3 zAxis(float z) { return {0, 0, z}; }
+	
 } } // end of namespace
-#endif
+
+#endif // AE_MATH_H

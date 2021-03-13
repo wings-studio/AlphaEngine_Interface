@@ -1,6 +1,10 @@
-#include <ae_std.h>
-#include <ae_math.h>
-#include <Graphics.h>
+#pragma once
+#ifndef GRAPHICS3D_H
+#define GRAPHICS3D_H
+
+#include "ae_std.h"
+#include "ae_math.h"
+#include "Scene.h"
 #include <vector>
 
 using namespace AlphaEngine::Math;
@@ -8,43 +12,21 @@ using namespace AlphaEngine;
 
 namespace AlphaEngine { namespace Graphics {
 	
-	class Object3D
+	class Buffer
 	{
 	public:
-		
-		Object3D();
-		~Object3D();
-		
-		void addChild(Object3D* child);
-		void removeChild(Object3D* child);
-		void setParent(Object3D* _parent);
-		
 	
-	private:
-		std::vector<Object3D*> children;
-		Object3D* parent;	
-	};
-	
-	class Camera : Object3D
-	{
-	public:
+		Buffer();
+		~Buffer();
 		
-		Camera();
-		~Camera();
+		void setData(Vector3 _data[]);
 		
 	private:
+		Vector3 data[];
+			
 	};
 	
-	class Light : Object3D
-	{
-	public:
-		Light();
-		~Light();
-		
-	private:
-	};
-	
-	class Mesh : Object3D
+	class Mesh : TransformableObject
 	{
 	public:
 		
@@ -66,7 +48,23 @@ namespace AlphaEngine { namespace Graphics {
 		str texture_path;
 	};
 	
-	class ModelObject : Object3D
+	class Model
+	{
+	public:
+		
+		Model();
+		~Model();
+		
+		void import(str path);
+		
+		Mesh* getMeshes(); // return array
+		int meshCount();
+	
+	private:
+		str mdl_path;
+	};
+	
+	class ModelObject : TransformableObject
 	{
 	public:
 		
@@ -87,4 +85,8 @@ namespace AlphaEngine { namespace Graphics {
 	private:
 	};
 	
+	
+	
 } } // end of namespaces
+
+#endif // GRAPHICS3D_H

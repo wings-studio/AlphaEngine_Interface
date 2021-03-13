@@ -1,8 +1,17 @@
+#pragma once
+#ifndef INPUT_H
+#define INPUT_H
+
 #include "ae_std.h"
 #include "ae_math.h"
 
+#define OnKeyPressed(func) AlphaEngine::Input::onKeyPressed.addHandler(AlphaEngine::Action<AlphaEngine::Input::Key, const char*>(func));
+#define OnKeyReleased(func) AlphaEngine::Input::onKeyReleased.addHandler(AlphaEngine::Action<AlphaEngine::Input::Key, const char*>(func));
+
+#define PressKey(key) AlphaEngine::Input::onKeyPressed.exec(AlphaEngine::Input::Key::key, #key);
+#define ReleaseKey(key) AlphaEngine::Input::onKeyReleased.exec(AlphaEngine::Input::Key::key, #key);
+
 using namespace AlphaEngine::Math;
-using namespace AlphaEngine;
 
 namespace AlphaEngine { namespace Input
 {
@@ -128,13 +137,11 @@ typedef Event<MButton, Vector2> MouseEvent; // button, position
 typedef Event<Vector2, Vector2> MouseMoveEvent; // relative pos, pos
 typedef Event<Vector2, Vector2> MouseScrollEvent; // offset, position
 
-class Input
-{
-public:	
-	static KeyEvent onKeyPressed, onKeyReleased;
-	static MouseEvent onMousePressed, onMouseReleased;
-	static MouseMoveEvent onMouseMoved;
-	static MouseScrollEvent onMouseScrolled;
-};
+KeyEvent onKeyPressed, onKeyReleased;
+MouseEvent onMousePressed, onMouseReleased;
+MouseMoveEvent onMouseMoved;
+MouseScrollEvent onMouseScrolled;
 
 } } // end of namespace
+
+#endif // INPUT_H

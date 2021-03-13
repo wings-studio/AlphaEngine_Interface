@@ -1,31 +1,26 @@
 #pragma once
-#ifndef RENDERER_H
-#define RENDERER_H
+#ifndef GRAPHICS2D_H
+#define GRAPHICS2D_H
 
 #include "ae_std.h"
 #include "ae_math.h"
-#include "Scene.h"
+#include <vector>
 
 using namespace AlphaEngine::Math;
 using namespace AlphaEngine;
 
 namespace AlphaEngine { namespace Graphics {
 	
-	class Renderer
+	class Material
 	{
 	public:
 		
-		Renderer();
-		~Renderer();
-		
-		void createScene();
-		Scene* scene();
-		void render();
+		Material();
+		~Material();
 	
 	private:
-		Scene rendering_scene;	
 	};
 	
 } } // end of namespaces
 
-#endif // RENDERER_H
+#endif // GRAPHICS2D_H

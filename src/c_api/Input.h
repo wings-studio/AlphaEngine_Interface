@@ -1,4 +1,8 @@
-#include <ae_math.h>
+#pragma once
+#ifndef INPUT_C_H
+#define INPUT_C_H
+
+#include "ae_math.h"
 
 void ae_onKeyPressed(void(func*)(unsigned int, const char*));
 void ae_onKeyReleased(void(func*)(unsigned int, const char*));
@@ -6,17 +10,16 @@ void ae_onMousePressed(void(func*)(unsigned int, Vector2));
 void ae_onMouseReleased(void(func*)(unsigned int, Vector2));
 
 #ifdef __cplusplus
-#include <Input.h>
-using namespace AlphaEngine::Input;
+#include "Input.h"
 extern "C"
 {
 	void ae_onKeyPressed(void(func*)(unsigned int, const char*))
 	{
-		Input::onKeyPressed.addHandler(func);	
+		OnKeyPressed(func)	
 	}
 	void ae_onKeyReleased(void(func*)(unsigned int, const char*))
 	{
-		Input::onKeyReleased.addHandler(func);	
+		OnKeyReleased(func)	
 	}
 	void ae_onMousePressed(void(func*)(unsigned int, Vector2))
 	{
@@ -28,3 +31,5 @@ extern "C"
 	}
 }
 #endif
+
+#endif // INPUT_C_H
